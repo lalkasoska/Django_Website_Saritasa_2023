@@ -120,6 +120,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': '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',
         },
         'SCOPE': ['profile', 'email'],
+
+
     },
     'vk': {
         'APP': {
@@ -134,7 +136,7 @@ LOGIN_REDIRECT_URL = 'home'  # Change 'home' to your desired URL
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'  # Change 'home' to your desired URL
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'account_login'
-
+SOCIALACCOUNT_LOGIN_ON_GET=True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
