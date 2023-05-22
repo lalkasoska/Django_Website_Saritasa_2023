@@ -19,9 +19,10 @@ Including another URLconf
 from django.urls import path, include
 from myApplication import views
 
+
 urlpatterns = [
     # other URL patterns
-    path('', views.home, name='home'),  # Add this line for the root URL
+    path('', views.welcome, name='welcome'),  # Add this line for the root URL
     path('accounts/', include('allauth.urls')),
     path('login/', views.login, name='login'),
 ]

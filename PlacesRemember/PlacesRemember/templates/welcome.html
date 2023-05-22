@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block content %}
+
+    <style>
+        .welcome {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .memories {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .sign-in {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 260px;
+            height: 70px;
+            line-height: 35px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .btn-google {
+            background-color: #db4437;
+        }
+
+        .btn-vk {
+            background-color: #3399ff;
+        }
+
+        .button-icon {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .intro {
+            font-family: 'Bangers', sans-serif;
+            font-size: 24px;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .intro p:first-child {
+            margin-top: 0;
+        }
+    </style>
+
+    <div class="welcome">
+        <h1>Welcome to Places Remember!</h1>
+    </div>
+
+    <div class="intro">
+        <p align="justify">Our application allows you to store and cherish your precious memories of the places you have visited. You can easily create and manage your memories, add photos, and write comments about each place.</p>
+        <p align="justify">Explore the world through your memories and keep track of all the wonderful places you have experienced. Whether it's a breathtaking landscape, a cozy café, or an exciting city, our application helps you capture and relive those special moments.</p>
+        <p align="justify">Start creating your memories today and let our application be your trusted companion on your journey of exploration and remembrance!</p>
+    </div>
+
+    <div class="sign-in">
+        <!-- Button to open the login page -->
+        <a href="{% provider_login_url 'google' %}" class="btn btn-google">
+            <img src="{% static '/images/btn_google_light_normal_ios.svg' %}" alt="Google Logo" class="button-icon">
+            Sign in with Google
+        </a>
+
+        <a href="{% provider_login_url 'vk' %}" class="btn btn-vk">
+            <img src="{% static '/images/VK_Compact_Logo.svg' %}" alt="VK Logo" class="button-icon">
+            Sign in with VK
+        </a>
+    </div>
+
+{% endblock %}
