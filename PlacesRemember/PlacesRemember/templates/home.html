@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+</style>
+  <!-- User profile header -->
+  <div class="profile-header">
+    <div class="centered-content">
+      <img src="{{ profile_picture }}" alt="Profile Picture" class="profile-picture">
+      <h1>{{user.first_name}} {{user.last_name}}</h1>
+    </div>
+  </div>
+
+  <div class="centered-content">
+  <!-- Add memory button -->
+  {# <a href="{% url 'add_memory' %}" class="btn btn-primary">Добавить воспоминание</a> #}
+
+  <!-- Memory list -->
+  <ul class="memory-list">
+    {% for memory in memories %}
+      <li>{{ memory }}</li>
+    {% empty %}
+      <li>Нет добавленных воспоминаний</li>
+    {% endfor %}
+  </ul>
+</div>
+  <!-- Logout button -->
+  {# <a href="{% url 'logout' %}" class="btn btn-primary">Выйти</a> #}
+{% endblock %}

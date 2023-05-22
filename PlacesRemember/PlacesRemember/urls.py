@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.welcome, name='welcome'),  # Add this line for the root URL
     path('accounts/', include('allauth.urls')),
     path('login/', views.login, name='login'),
+    path('home/', views.home, name='home'),
 ]
 
 
