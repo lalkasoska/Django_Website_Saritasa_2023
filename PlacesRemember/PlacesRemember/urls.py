@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('login/', views.login, name='login'),
     path('home/', views.home, name='home'),
+    path('add_memory/', views.add_memory, name='add_memory'),
 ]
 
 

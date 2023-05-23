@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from PlacesRemember.forms import MemoryForm
+
 
 
 def welcome(request):
@@ -29,5 +31,16 @@ def home(request):
         'profile_picture': profile_picture,
     }
     return render(request, 'home.html', context)
+
+@login_required
+def add_memory(request):
+    if request.method == 'POST':
+        form = MemoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect to the home page or a success page
+    else:
+        form = MemoryForm()
+    return render(request, 'add_memory.html', {'form': form})
 
 # Create your views here.
