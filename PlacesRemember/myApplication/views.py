@@ -37,8 +37,22 @@ def add_memory(request):
     if request.method == 'POST':
         form = MemoryForm(request.POST)
         if form.is_valid():
-            form.save()
+            # Save the form data without committing to the database
+            memory = form.save(commit=False)
+
+            # Retrieve the latitude and longitude from the form's cleaned data
+            latitude = form.cleaned_data['latitude']
+            longitude = form.cleaned_data['longitude']
+
+            # Set the latitude and longitude values for the memory object
+            memory.latitude = latitude
+            memory.longitude = longitude
+
+            # Save the memory object to the database
+            memory.save()
+
             # Redirect to the home page or a success page
+            return redirect('home')
     else:
         form = MemoryForm()
     return render(request, 'add_memory.html', {'form': form})

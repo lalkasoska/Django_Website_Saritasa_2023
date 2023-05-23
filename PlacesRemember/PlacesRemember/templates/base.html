@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=19c7478f-a13f-47d0-8203-faafa0904d09&lang=en_US" type="text/javascript"></script>
+
     <title>Memories App</title>
     {% bootstrap_css %}
     <style>
@@ -12,6 +14,9 @@
             min-height: 100vh;
             margin: 0;
             padding: 0;
+        }
+        h1 {
+            text-align: center;
         }
 
         .navbar-brand {
@@ -41,7 +46,7 @@
                             <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Add Memory</a>
+                            <a class="nav-link" href="{% url 'add_memory' %}">Add Memory</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'welcome' %}">Logout</a>
