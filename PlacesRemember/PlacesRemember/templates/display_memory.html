@@ -43,12 +43,16 @@ ymaps.ready(function() {
     placemark = new ymaps.Placemark(placemarkCoords);
     map.geoObjects.add(placemark);
     map.setCenter(placemarkCoords, 2);
+    var longitude = {{memory.longitude}};
+    var latitude = {{memory.latitude}};
+    document.getElementById('longitude').value = longitude;
+    document.getElementById('latitude').value = latitude;
   {% endif %}
 
   map.events.add('click', function(e) {
     var coords = e.get('coords');
-    var longitude = coords[0];
-    var latitude = coords[1];
+    longitude = coords[0];
+    latitude = coords[1];
     if (placemark) {
       placemark.geometry.setCoordinates(coords);
     } else {
