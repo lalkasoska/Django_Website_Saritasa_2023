@@ -16,13 +16,10 @@ Including another URLconf
 """
 # urls.py
 
-from django.urls import path, include
-from myApplication import views
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-
-
-
+from django.urls import path, include
+from myApplication import views
 
 urlpatterns = [
     # other URL patterns
@@ -36,7 +33,3 @@ urlpatterns = [
     path('memory/<int:memory_id>/', views.display_memory, name='display_memory'),
     path('admin/', admin.site.urls),
 ]
-
-
-
-

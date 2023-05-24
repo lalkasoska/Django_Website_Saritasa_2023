@@ -3,11 +3,16 @@
 {% load static %}
 {% block content %}
 
-    <style>
+<style>
         .welcome {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 100px;
             margin-bottom: 40px;
+
+            border-radius: 10px;
+            padding: 10px;
+            color: #272b38;
+            background-color: #ffc800;
         }
 
         .memories {
@@ -18,6 +23,11 @@
         .intro {
             text-align: center;
             margin-top: 20px;
+
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #272b38;
+            color: #e3dfd1;
         }
 
         .sign-in {
@@ -58,36 +68,46 @@
             font-family: 'Bangers', sans-serif;
             font-size: 25px;
             line-height: 1.5;
-            color: black;
+
             margin-bottom: 20px;
         }
 
         .intro p:first-child {
             margin-top: 0;
         }
-    </style>
+        .intro p {
 
-    <div class="welcome">
-        <h1>Welcome to Places Remember!</h1>
-    </div>
+        }
 
-    <div class="intro">
-        <p align="justify">Our application allows you to store and cherish your precious memories of the places you have visited. You can easily create and manage your memories, add photos, and write comments about each place.</p>
-        <p align="justify">Explore the world through your memories and keep track of all the wonderful places you have experienced. Whether it's a breathtaking landscape, a cozy café, or an exciting city, our application helps you capture and relive those special moments.</p>
-        <p align="justify">Start creating your memories today and let our application be your trusted companion on your journey of exploration and remembrance!</p>
-    </div>
 
-    <div class="sign-in">
-        <!-- Button to open the login page -->
-        <a href="{% provider_login_url 'google' %}" class="btn btn-google">
-            <img src="{% static '/images/btn_google_light_normal_ios.svg' %}" alt="Google Logo" class="button-icon">
-            Sign in with Google
-        </a>
 
-        <a href="{% provider_login_url 'vk' %}" class="btn btn-vk">
-            <img src="{% static '/images/VK_Compact_Logo.svg' %}" alt="VK Logo" class="button-icon">
-            Sign in with VK
-        </a>
-    </div>
+</style>
+
+<div class="welcome">
+    <h1>Welcome to Places Remember!</h1>
+</div>
+
+<div class="intro">
+    <p align="justify">Our application allows you to store and cherish your precious memories of the places you have
+        visited. You can easily create and manage your memories, add photos, and write comments about each place.</p>
+    <p align="justify">Explore the world through your memories and keep track of all the wonderful places you have
+        experienced. Whether it's a breathtaking landscape, a cozy café, or an exciting city, our application helps you
+        capture and relive those special moments.</p>
+    <p align="justify">Start creating your memories today and let our application be your trusted companion on your
+        journey of exploration and remembrance!</p>
+</div>
+
+<div class="sign-in">
+    <!-- Button to open the login page -->
+    <a class="btn btn-google" href="{% provider_login_url 'google' %}">
+        <img alt="Google Logo" class="button-icon" src="{% static '/images/btn_google_light_normal_ios.svg' %}">
+        Sign in with Google
+    </a>
+
+    <a class="btn btn-vk" href="{% provider_login_url 'vk' %}">
+        <img alt="VK Logo" class="button-icon" src="{% static '/images/VK_Compact_Logo.svg' %}">
+        Sign in with VK
+    </a>
+</div>
 
 {% endblock %}

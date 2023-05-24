@@ -1,14 +1,17 @@
 {% load bootstrap4 %}
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=19c7478f-a13f-47d0-8203-faafa0904d09&lang=en_US" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=19c7478f-a13f-47d0-8203-faafa0904d09&lang=en_US"
+            type="text/javascript"></script>
 
     <title>Memories App</title>
     {% bootstrap_css %}
     <style>
         body {
+            background-image: url("{% static 'images/White2.jpg' %}");
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -24,51 +27,62 @@
         }
 
         .navbar {
+            background-color: black;
             margin-bottom: 20px;
+            font-size: 17pt;
+        }
+        .nav-item {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 3px;
+        margin-bottom: 3px;
         }
 
         .content {
             flex-grow: 1;
         }
+
+
     </style>
 </head>
 
 <body>
-    <header>
-        {% block navbar %}
-  {% if request.path != '/' %}
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'add_memory' %}">Add Memory</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                        </li>
-                    </ul>
-                </div>
+<header>
+    {% block navbar %}
+    {% if request.path != '/' %}
+    <nav class="navbar navbar-expand-sm navbar-light bg-warning">
+        <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+            <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-target="#navbarNav" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_memory' %}">Add Memory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        {% endif %}
-{% endblock %}
-    </header>
-
-    <div class="content">
-        <div class="container mt-4">
-            {% block content %}
-            {% endblock %}
         </div>
-    </div>
+    </nav>
+    {% endif %}
+    {% endblock %}
+</header>
 
-    {% bootstrap_javascript jquery='full' %}
+<div class="content">
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+{% bootstrap_javascript jquery='full' %}
 </body>
 </html>

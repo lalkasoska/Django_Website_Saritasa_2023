@@ -1,11 +1,9 @@
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from PlacesRemember.forms import MemoryForm
-from .models import Memory
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
-
-
+from django.contrib.auth import authenticate, login
+from PlacesRemember.forms import MemoryForm
+from .models import Memory
 
 
 def welcome(request):
@@ -29,13 +27,13 @@ def home(request):
             vk_provider = user.socialaccount_set.get(provider='vk')
             profile_picture = vk_provider.extra_data.get('photo_max_orig', None)
 
-
     context = {
         'user': user,
         'profile_picture': profile_picture,
         'memories': memories,
     }
     return render(request, 'home.html', context)
+
 
 @login_required
 def add_memory(request):
@@ -64,11 +62,13 @@ def add_memory(request):
         form = MemoryForm()
     return render(request, 'add_memory.html', {'form': form})
 
+
 @login_required
 def memory_list(request):
     memories = Memory.objects.all()  # Retrieve all memories from the database
     context = {'memories': memories}
     return render(request, 'memory_list.html', context)
+
 
 @login_required
 def display_memory(request, memory_id):

@@ -30,31 +30,33 @@ font-size: 15pt;
 width: 100%;
 }
 
-</style>
-  <!-- User profile header -->
-  <div class="profile-header">
-    <div class="centered-content">
-      <img src="{{ profile_picture }}" alt="Profile Picture" class="profile-picture" style="border-radius: 15%;">
-      <h1 style="margin-top: 10px; margin-bottom: 20px;">{{ user.first_name }} {{ user.last_name }}</h1>
-    </div>
-  </div>
 
-  <div class="centered-content">
+
+</style>
+<!-- User profile header -->
+<div class="profile-header">
+    <div class="centered-content">
+        <img alt="Profile Picture" class="profile-picture" src="{{ profile_picture }}" style="border-radius: 15%;">
+        <h1 style="margin-top: 10px; margin-bottom: 20px; color:#272b38;">{{ user.first_name }} {{ user.last_name }}</h1>
+    </div>
+</div>
+
+<div class="centered-content">
     <!-- Add memory button -->
-    <a href="{% url 'add_memory' %}" class="btn btn-primary" style="width: 300px; font-size: 20pt;">Add a new memory</a><br>
+    <a class="btn btn-warning" href="{% url 'add_memory' %}" style="width: 300px; font-size: 20pt;">Add a new memory</a><br>
 
     <!-- Memory list -->
     {% if memories %}
-      <ul class="memory-list">
+    <ul class="memory-list">
         {% for memory in memories %}
-          <li><a href="{% url 'display_memory' memory.id %}" class="btn btn-outline-primary">{{ memory }}</a></li>
+        <li><a class="btn btn-outline-dark" href="{% url 'display_memory' memory.id %}">{{ memory }}</a></li>
         {% endfor %}
-      </ul>
+    </ul>
     {% else %}
-      <h2>There are no memories yet. Try adding a new one!</h2>
+    <h2>There are no memories yet. Try adding a new one!</h2>
     {% endif %}
-  </div>
+</div>
 
-  <!-- Logout button -->
-  {# <a href="{% url 'logout' %}" class="btn btn-primary">Выйти</a> #}
+<!-- Logout button -->
+{# <a class="btn btn-danger" href="{% url 'logout' %}">Выйти</a> #}
 {% endblock %}
