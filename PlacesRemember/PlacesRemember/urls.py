@@ -18,6 +18,10 @@ Including another URLconf
 
 from django.urls import path, include
 from myApplication import views
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
+
 
 
 urlpatterns = [
@@ -25,9 +29,14 @@ urlpatterns = [
     path('', views.welcome, name='welcome'),  # Add this line for the root URL
     path('accounts/', include('allauth.urls')),
     path('login/', views.login, name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='welcome'), name='logout'),
     path('home/', views.home, name='home'),
     path('add_memory/', views.add_memory, name='add_memory'),
+    path('memory_list/', views.memory_list, name='memory_list'),
+    path('memory/<int:memory_id>/', views.display_memory, name='display_memory'),
+    path('admin/', admin.site.urls),
 ]
+
 
 
 

@@ -32,8 +32,11 @@
         }
     </style>
 </head>
+
 <body>
     <header>
+        {% block navbar %}
+  {% if request.path != '/' %}
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -49,12 +52,14 @@
                             <a class="nav-link" href="{% url 'add_memory' %}">Add Memory</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'welcome' %}">Logout</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        {% endif %}
+{% endblock %}
     </header>
 
     <div class="content">
