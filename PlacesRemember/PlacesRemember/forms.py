@@ -11,7 +11,10 @@ class MemoryForm(forms.ModelForm):
         fields = ['place_name', 'comment', 'latitude', 'longitude']
         widgets = {
             'place_name': forms.TextInput(
-                attrs={'class': 'form-control', 'style': 'width: 500px; margin-bottom: 5px;'}),
+                attrs={'class': 'form-control',
+                       'style': 'width: 500px; margin-bottom: 5px;'}),
             'comment': forms.Textarea(
-                attrs={'class': 'form-control', 'style': 'width: 500px; height: 400px; margin-bottom: 20px;'}),
+                attrs={'class': 'form-control',
+                       'style': 'width: 500px; height: 400px; margin-bottom: '
+                                '20px;'}),
         }

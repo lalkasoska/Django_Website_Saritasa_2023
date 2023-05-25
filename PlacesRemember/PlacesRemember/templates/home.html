@@ -22,7 +22,7 @@
 
  // background-color: orange;
   border-radius: 25px;
-  width: 450px;
+  width: 400px;
 
 }
 .memory-list li a {
@@ -32,24 +32,34 @@ width: 100%;
 
 
 
+
+
+
+
+
 </style>
 <!-- User profile header -->
 <div class="profile-header">
     <div class="centered-content">
-        <img alt="Profile Picture" class="profile-picture" src="{{ profile_picture }}" style="border-radius: 15%;">
-        <h1 style="margin-top: 10px; margin-bottom: 20px; color:#272b38;">{{ user.first_name }} {{ user.last_name }}</h1>
+        <img alt="Profile Picture" class="profile-picture"
+             src="{{ profile_picture }}" style="border-radius: 15%;">
+        <h1 style="margin-top: 10px; margin-bottom: 20px; color:#272b38;">
+            {{user.first_name }} {{ user.last_name }}</h1>
     </div>
 </div>
 
 <div class="centered-content">
     <!-- Add memory button -->
-    <a class="btn btn-warning" href="{% url 'add_memory' %}" style="width: 300px; font-size: 20pt;">Add a new memory</a><br>
+    <a class="btn btn-warning" href="{% url 'add_memory' %}"
+       style="width: 300px; font-size: 20pt;">Add a new memory</a><br>
 
     <!-- Memory list -->
     {% if memories %}
     <ul class="memory-list">
         {% for memory in memories %}
-        <li><a class="btn btn-outline-dark" href="{% url 'display_memory' memory.id %}">{{ memory }}</a></li>
+        <li><a class="btn btn-outline-dark"
+               href="{% url 'display_memory' memory.id %}">{{ memory }}</a>
+        </li>
         {% endfor %}
     </ul>
     {% else %}

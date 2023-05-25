@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth import authenticate, login
+
 from PlacesRemember.forms import MemoryForm
 from .models import Memory
 
 
 def welcome(request):
-    memories = []  # Replace with your actual memory data
+    memories = []  # Replace with your actual memory datas
     context = {'memories': memories}
     return render(request, 'welcome.html', context)
 
@@ -25,7 +25,8 @@ def home(request):
             profile_picture = google_provider.extra_data.get('picture', None)
         elif user.socialaccount_set.filter(provider='vk').exists():
             vk_provider = user.socialaccount_set.get(provider='vk')
-            profile_picture = vk_provider.extra_data.get('photo_max_orig', None)
+            profile_picture = vk_provider.extra_data.get('photo_max_orig',
+                                                         None)
 
     context = {
         'user': user,
@@ -44,7 +45,8 @@ def add_memory(request):
             longitude = form.cleaned_data['longitude']
             place_name = form.cleaned_data['place_name']
             comment = form.cleaned_data['comment']
-            # Process the latitude, longitude, place_name, and comment as needed
+            # Process the latitude, longitude, place_name, and comment as
+            # needed
             # ...
 
             # Save the memory object
