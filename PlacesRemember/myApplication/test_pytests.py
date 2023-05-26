@@ -7,21 +7,24 @@ django.setup()
 
 # tests.py
 
-import pytest
-from django.contrib.auth.models import User
-from django.test import Client
-from django.urls import reverse
-from .models import Memory
+import pytest  # noqa: E402
+from django.contrib.auth.models import User  # noqa: E402
+from django.test import Client  # noqa: E402
+from django.urls import reverse  # noqa: E402
+from .models import Memory  # noqa: E402
+
 
 @pytest.fixture
 def user():
     # Create a test user
     return User.objects.create_user(username='testuser', password='testpass')
 
+
 @pytest.fixture
 def user2():
     # Create a test user
     return User.objects.create_user(username='testuser2', password='testpass2')
+
 
 @pytest.fixture
 def client(user):
@@ -29,6 +32,7 @@ def client(user):
     client = Client()
     client.force_login(user)
     return client
+
 
 @pytest.mark.django_db
 def test_add_memory(client, user):
@@ -49,6 +53,7 @@ def test_add_memory(client, user):
     assert Memory.objects.filter(place_name='Test Place',
                                  comment='Test Comment',
                                  user=user).exists()
+
 
 @pytest.mark.django_db
 def test_display_memory(client, user):
@@ -77,16 +82,17 @@ def test_display_memory(client, user):
     assert memory.latitude == 123.456
     assert memory.longitude == 789.012
 
+
 @pytest.mark.django_db
 def test_retrieve_memories_for_user(client, user, user2):
-    memory1 = Memory.objects.create(
+    Memory.objects.create(
         place_name='Test Place 1',
         comment='Test Comment 1',
         latitude=123.456,
         longitude=789.012,
         user=user
     )
-    memory2 = Memory.objects.create(
+    Memory.objects.create(
         place_name='Test Place 2',
         comment='Test Comment 2',
         latitude=1.456,
@@ -109,6 +115,3 @@ def test_retrieve_memories_for_user(client, user, user2):
     )
     mems = list(Memory.objects.filter(user=user2))
     assert mems == [memory3, memory4]
-
-
-
