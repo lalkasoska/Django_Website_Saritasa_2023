@@ -28,7 +28,7 @@ jobs:
           # default set of ruff rules with GitHub Annotations
           ruff --format=github --target-version=py37 .
       - name: Create database
-        run: python manage.py migrate
+        run: python PlacesRemember/manage.py migrate
       - name: Test with pytest
         run: |
           pytest
