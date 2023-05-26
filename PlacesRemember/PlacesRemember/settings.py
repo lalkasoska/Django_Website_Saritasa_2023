@@ -134,7 +134,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 LOGIN_REDIRECT_URL = 'home'  # Change 'home' to your desired URL
-ACCOUNT_LOGOUT_REDIRECT_URL = 'home'  # Change 'home' to your desired URL
+ACCOUNT_LOGOUT_REDIRECT_URL = 'welcome'  # Change 'home' to your desired URL
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'account_login'
 SOCIALACCOUNT_LOGIN_ON_GET = True

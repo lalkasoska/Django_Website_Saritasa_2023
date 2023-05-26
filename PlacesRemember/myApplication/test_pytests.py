@@ -9,10 +9,12 @@ django.setup()
 
 import pytest  # noqa: E402
 from django.contrib.auth.models import User  # noqa: E402
+from django.shortcuts import get_object_or_404  # noqa: E402
 from django.test import Client  # noqa: E402
 from django.urls import reverse  # noqa: E402
 from .models import Memory  # noqa: E402
-from PlacesRemember.forms import MemoryForm
+from PlacesRemember.forms import MemoryForm  # noqa: E402
+from allauth.socialaccount.models import SocialAccount  # noqa: E402
 
 
 @pytest.fixture
@@ -34,13 +36,25 @@ def client(user):
     client.force_login(user)
     return client
 
+
 @pytest.mark.django_db
 def test_welcome(client):
     response = client.get(reverse('welcome'))
     assert response.status_code == 200
 
+
 @pytest.mark.django_db
 def test_home(client, user):
+    client.force_login(user)
+
+    SocialAccount.objects.create(
+        user=user,
+        provider='vk',
+        extra_data={
+            'photo_max_orig':
+                'https://i.ytimg.com/vi/XZxu1kiP65w/maxresdefault.jpg'}
+    )
+
     client.post(reverse('add_memory'), {
         'place_name': 'Test Place404',
         'comment': 'Test Comment',
@@ -50,9 +64,21 @@ def test_home(client, user):
     })
     response = client.get(reverse('home'))
     assert response.status_code == 200
-    assert response.context['profile_picture'] == None
+    assert response.context[
+               'profile_picture'] == \
+           'https://i.ytimg.com/vi/XZxu1kiP65w/maxresdefault.jpg'
     assert response.context['memories'][0].place_name == 'Test Place404'
 
+    # Create a Google SocialAccount for the authenticated user
+    SocialAccount.objects.create(
+        user=user,
+        provider='google',
+        extra_data={'picture': 'https://lookw.ru/9/980/1566944536-1-38.jpg'}
+    )
+    response = client.get(reverse('home'))
+    assert response.context[
+               'profile_picture'] == \
+           'https://lookw.ru/9/980/1566944536-1-38.jpg'
 
 
 @pytest.mark.django_db
@@ -93,19 +119,17 @@ def test_display_memory(client, user):
     # Retrieve the memory
     response = client.get(reverse('display_memory', args=[memory.id]))
 
-    # Check if the response status code is 200 (OK)
-    assert response.status_code == 302
-    assert response.url == reverse('home')
+    assert response.status_code == 200
 
     # Check if the memory details are present in the response
     form = response.context['form']
     # Compare form widget contents with memory values
     rendered_form = form.as_table()
+
     assert str(memory.place_name) in rendered_form
     assert str(memory.comment) in rendered_form
     assert str(memory.latitude) in rendered_form
     assert str(memory.longitude) in rendered_form
-
 
     response = client.post(reverse('display_memory', args=[memory.id]), {
         'place_name': 'Changed Test Place',
@@ -114,24 +138,15 @@ def test_display_memory(client, user):
         'longitude': 012.789,
         'user': user.id  # Associate the memory with the test user
     })
+    assert response.status_code == 302
+    assert response.url == reverse('home')
 
-    response = client.get(reverse('display_memory', args=[memory.id]))
-
-    # Check if the response status code is 200 (OK)
-    assert response.status_code == 200
-
-    changedMemory = Memory.objects.filter(
-        id=memory.id)[0]
+    changedMemory = get_object_or_404(Memory, id=memory.id)
 
     assert changedMemory.place_name == 'Changed Test Place'
     assert changedMemory.comment == 'Changed Test Comment'
     assert changedMemory.latitude == 456.123
     assert changedMemory.longitude == 012.789
-
-
-
-
-
 
 
 @pytest.mark.django_db
