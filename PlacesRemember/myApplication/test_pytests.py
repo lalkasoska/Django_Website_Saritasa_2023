@@ -1,6 +1,8 @@
 import os
 import django
 
+#  pytest was unsatisfied with DJANGO_SETTINGS_MODULE so i had to set it
+#  explicitly
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PlacesRemember.settings')
 django.setup()
 
@@ -56,6 +58,7 @@ def test_home(client, user):
     """
     client.force_login(user)
 
+    # Create a vk SocialAccount for testing image retrieving
     SocialAccount.objects.create(
         user=user,
         provider='vk',
@@ -79,7 +82,7 @@ def test_home(client, user):
            'https://i.ytimg.com/vi/XZxu1kiP65w/maxresdefault.jpg'
     assert response.context['memories'][0].place_name == 'Test Place404'
 
-    # Create a Google SocialAccount for the authenticated user
+    # Create a Google SocialAccount for testing image retrieving
     SocialAccount.objects.create(
         user=user,
         provider='google',

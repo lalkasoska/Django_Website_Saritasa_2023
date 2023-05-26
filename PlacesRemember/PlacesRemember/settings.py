@@ -116,11 +116,10 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-LOGIN_REDIRECT_URL = 'home'  # Change 'home' to your desired URL
-ACCOUNT_LOGOUT_REDIRECT_URL = 'welcome'  # Change 'home' to your desired URL
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'welcome'
 LOGIN_URL = 'account_login'
-SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_LOGIN_ON_GET = True  # Skip login page
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "resources"),)

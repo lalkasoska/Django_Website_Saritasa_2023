@@ -41,7 +41,7 @@ def home(request):
 @login_required
 def add_memory(request):
     """
-    Handles the addition of a new memory.
+    Renders the page for addition of a new memory.
     """
     if request.method == 'POST':
         form = MemoryForm(request.POST)
