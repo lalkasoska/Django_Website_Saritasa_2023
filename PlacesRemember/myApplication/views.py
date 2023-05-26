@@ -1,30 +1,34 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 from PlacesRemember.forms import MemoryForm
 from .models import Memory
 
 
 def welcome(request):
+    """
+    Renders the welcome page.
+    """
     return render(request, 'welcome.html')
 
 
 @login_required
 def home(request):
+    """
+    Renders the home page with the user's memories.
+    """
     user = request.user
     profile_picture = None
-    memories = Memory.objects.filter(user=request.user)
+    memories = Memory.objects.filter(user=user)
 
     # Retrieve the profile picture URL based on the authentication provider
     if user.is_authenticated:
         if user.socialaccount_set.filter(provider='google').exists():
             google_provider = user.socialaccount_set.get(provider='google')
-            profile_picture = google_provider.extra_data.get('picture', None)
+            profile_picture = google_provider.extra_data.get('picture')
         elif user.socialaccount_set.filter(provider='vk').exists():
             vk_provider = user.socialaccount_set.get(provider='vk')
-            profile_picture = vk_provider.extra_data.get('photo_max_orig',
-                                                         None)
+            profile_picture = vk_provider.extra_data.get('photo_max_orig')
 
     context = {
         'user': user,
@@ -36,6 +40,9 @@ def home(request):
 
 @login_required
 def add_memory(request):
+    """
+    Handles the addition of a new memory.
+    """
     if request.method == 'POST':
         form = MemoryForm(request.POST)
         if form.is_valid():
@@ -43,6 +50,7 @@ def add_memory(request):
             longitude = form.cleaned_data['longitude']
             place_name = form.cleaned_data['place_name']
             comment = form.cleaned_data['comment']
+
             # Process the latitude, longitude, place_name, and comment as
             # needed
             # ...
@@ -60,11 +68,15 @@ def add_memory(request):
             return redirect('home')
     else:
         form = MemoryForm()
+
     return render(request, 'add_memory.html', {'form': form})
 
 
 @login_required
 def display_memory(request, memory_id):
+    """
+    Renders the display memory page for a specific memory.
+    """
     # Retrieve the memory object based on the memory ID
     memory = get_object_or_404(Memory, id=memory_id)
 
@@ -79,4 +91,3 @@ def display_memory(request, memory_id):
     # Pass the memory to the template context
     context = {'memory': memory, 'form': form}
     return render(request, 'display_memory.html', context)
-# Create your views here.

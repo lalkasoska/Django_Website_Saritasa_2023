@@ -1,31 +1,44 @@
-
 # Places Remember Django Application
+
 ## Installation guide
+
 1. Clone the repository
 2. Cd to DjangoSaritasa/PlacesRemember
 3. Run "pip install -r requrements.txt"
 4. Run "manage.py migrate"
 5. Run "python manage.py runserver"
 6. Open http://127.0.0.1:8000/
+
 ## Requirements to be satisfied
+
 - Deploy the application on the web service<br>
-Was unable to use https://heroku.com/ since it's paid and does not accept MIR cards. Free alternatives have severe limitations (e.g. unaccessible shell on render on https://render.com/). I'm sure, given enough time I'll figure it out.
+  Was unable to use https://heroku.com/ since it's paid and does not accept MIR
+  cards. Free alternatives have severe limitations (e.g. unaccessible shell on
+  render on https://render.com/). I'm sure, given enough time I'll figure it
+  out.
 - Local Docker Run<br>
-I haven't worked with Docker before and decided to work on other aspects of this work more thoroughly instead.
+  I haven't worked with Docker before and decided to work on other aspects of
+  this work more thoroughly instead.
 - Running tests on push with GitHub Actions<br>
-I've successfully set up linters but configuring automatic testing led to some errors I haven't found a workaround for yet.
+  I've successfully set up linters but configuring automatic testing led to
+  some errors I haven't found a workaround for yet.
 
 ## Satified requirements
+
 - The Django applicaiton is built
 - PEP 8 coding style
 - Relevant packages are used
-- Used git during entire development process 
-- Followed commit style from https://chris.beams.io/posts/git-commit/. (Forgot imperative mood at first but started using it later)
+- Used git during entire development process
+- Followed commit style from https://chris.beams.io/posts/git-commit/. (Forgot
+  imperative mood at first but started using it later)
 - Wrote unit tests for adding and retrieving memories
 - Set up flake8 and ruff linting on push with GitHub Actions
-- Added badge from https://coveralls.io/ <a href='https://coveralls.io/github/lalkasoska/Django_Website_Saritasa_2023?branch=main'><img src='https://coveralls.io/repos/github/lalkasoska/Django_Website_Saritasa_2023/badge.svg?branch=main' alt='Coverage Status' /></a>
-<br><br>
+- Added badge
+  from https://coveralls.io/ <a href='https://coveralls.io/github/lalkasoska/Django_Website_Saritasa_2023?branch=main'><img src='https://coveralls.io/repos/github/lalkasoska/Django_Website_Saritasa_2023/badge.svg?branch=main' alt='Coverage Status' /></a>
+  <br><br>
+
 ## Overview
+
 Here's a quick overview of the application
 <h2 align="center"> Welcome Page</h2>
 <p align="center">

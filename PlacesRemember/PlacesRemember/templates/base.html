@@ -4,11 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Yandex Maps API -->
     <script src="https://api-maps.yandex.ru/2.1/?apikey=19c7478f-a13f-47d0-8203-faafa0904d09&lang=en_US"
             type="text/javascript"></script>
 
     <title>Memories App</title>
+
     {% bootstrap_css %}
+
     <style>
         body {
             background-image: url("{% static 'images/White2.jpg' %}");
@@ -18,6 +21,7 @@
             margin: 0;
             padding: 0;
         }
+
         h1 {
             text-align: center;
         }
@@ -31,22 +35,14 @@
             margin-bottom: 20px;
             font-size: 17pt;
         }
+
         .nav-item {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 3px;
-        margin-bottom: 3px;
+            margin: 3px 10px;
         }
 
         .content {
             flex-grow: 1;
         }
-
-
-
-
-
-
 
     </style>
 </head>
@@ -58,8 +54,7 @@
     <nav class="navbar navbar-expand-sm navbar-light bg-warning">
         <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
             <button aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation"
-                    class="navbar-toggler"
+                    aria-label="Toggle navigation" class="navbar-toggler"
                     data-target="#navbarNav" data-toggle="collapse"
                     type="button">
                 <span class="navbar-toggler-icon"></span>

@@ -1,11 +1,8 @@
-# tests.py
 import os
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PlacesRemember.settings')
 django.setup()
-
-# tests.py
 
 import pytest  # noqa: E402
 from django.contrib.auth.models import User  # noqa: E402
@@ -19,19 +16,25 @@ from allauth.socialaccount.models import SocialAccount  # noqa: E402
 
 @pytest.fixture
 def user():
-    # Create a test user
+    """
+    Create a test user.
+    """
     return User.objects.create_user(username='testuser', password='testpass')
 
 
 @pytest.fixture
 def user2():
-    # Create a test user
+    """
+    Create another test user.
+    """
     return User.objects.create_user(username='testuser2', password='testpass2')
 
 
 @pytest.fixture
 def client(user):
-    # Create a test client and authenticate as the test user
+    """
+    Create a test client and authenticate as the test user.
+    """
     client = Client()
     client.force_login(user)
     return client
@@ -39,12 +42,18 @@ def client(user):
 
 @pytest.mark.django_db
 def test_welcome(client):
+    """
+    Test the welcome view.
+    """
     response = client.get(reverse('welcome'))
     assert response.status_code == 200
 
 
 @pytest.mark.django_db
 def test_home(client, user):
+    """
+    Test the home view.
+    """
     client.force_login(user)
 
     SocialAccount.objects.create(
@@ -52,7 +61,8 @@ def test_home(client, user):
         provider='vk',
         extra_data={
             'photo_max_orig':
-                'https://i.ytimg.com/vi/XZxu1kiP65w/maxresdefault.jpg'}
+                'https://i.ytimg.com/vi/XZxu1kiP65w/maxresdefault.jpg'
+        }
     )
 
     client.post(reverse('add_memory'), {
@@ -83,7 +93,9 @@ def test_home(client, user):
 
 @pytest.mark.django_db
 def test_add_memory(client, user):
-    # Simulate creating a new memory associated with the test user
+    """
+    Test the add_memory view.
+    """
     response = client.post(reverse('add_memory'), {
         'place_name': 'Test Place',
         'comment': 'Test Comment',
@@ -92,14 +104,9 @@ def test_add_memory(client, user):
         'user': user.id  # Associate the memory with the test user
     })
     assert response.status_code == 302
-
-    # Check if the user is redirected to the correct location
     assert response.url == reverse('home')
-
-    # Verify that the memory is created in the database
     assert Memory.objects.filter(place_name='Test Place',
-                                 comment='Test Comment',
-                                 user=user).exists()
+                                 comment='Test Comment', user=user).exists()
 
     response = client.get(reverse('add_memory'))
     assert isinstance(response.context['form'], MemoryForm)
@@ -107,7 +114,9 @@ def test_add_memory(client, user):
 
 @pytest.mark.django_db
 def test_display_memory(client, user):
-    # Create a memory
+    """
+    Test the display_memory view.
+    """
     memory = Memory.objects.create(
         place_name='Test Place',
         comment='Test Comment',
@@ -116,16 +125,11 @@ def test_display_memory(client, user):
         user=user
     )
 
-    # Retrieve the memory
     response = client.get(reverse('display_memory', args=[memory.id]))
-
     assert response.status_code == 200
 
-    # Check if the memory details are present in the response
     form = response.context['form']
-    # Compare form widget contents with memory values
     rendered_form = form.as_table()
-
     assert str(memory.place_name) in rendered_form
     assert str(memory.comment) in rendered_form
     assert str(memory.latitude) in rendered_form
@@ -135,22 +139,24 @@ def test_display_memory(client, user):
         'place_name': 'Changed Test Place',
         'comment': 'Changed Test Comment',
         'latitude': 456.123,
-        'longitude': 012.789,
+        'longitude': 12.789,
         'user': user.id  # Associate the memory with the test user
     })
     assert response.status_code == 302
     assert response.url == reverse('home')
 
-    changedMemory = get_object_or_404(Memory, id=memory.id)
-
-    assert changedMemory.place_name == 'Changed Test Place'
-    assert changedMemory.comment == 'Changed Test Comment'
-    assert changedMemory.latitude == 456.123
-    assert changedMemory.longitude == 012.789
+    changed_memory = get_object_or_404(Memory, id=memory.id)
+    assert changed_memory.place_name == 'Changed Test Place'
+    assert changed_memory.comment == 'Changed Test Comment'
+    assert changed_memory.latitude == 456.123
+    assert changed_memory.longitude == 12.789
 
 
 @pytest.mark.django_db
 def test_retrieve_memories_for_user(client, user, user2):
+    """
+    Test retrieving memories for a specific user.
+    """
     Memory.objects.create(
         place_name='Test Place 1',
         comment='Test Comment 1',
