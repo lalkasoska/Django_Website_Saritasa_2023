@@ -12,6 +12,7 @@ from django.contrib.auth.models import User  # noqa: E402
 from django.test import Client  # noqa: E402
 from django.urls import reverse  # noqa: E402
 from .models import Memory  # noqa: E402
+from PlacesRemember.forms import MemoryForm
 
 
 @pytest.fixture
@@ -32,6 +33,26 @@ def client(user):
     client = Client()
     client.force_login(user)
     return client
+
+@pytest.mark.django_db
+def test_welcome(client):
+    response = client.get(reverse('welcome'))
+    assert response.status_code == 200
+
+@pytest.mark.django_db
+def test_home(client, user):
+    client.post(reverse('add_memory'), {
+        'place_name': 'Test Place404',
+        'comment': 'Test Comment',
+        'latitude': 123.456,
+        'longitude': 789.012,
+        'user': user.id  # Associate the memory with the test user
+    })
+    response = client.get(reverse('home'))
+    assert response.status_code == 200
+    assert response.context['profile_picture'] == None
+    assert response.context['memories'][0].place_name == 'Test Place404'
+
 
 
 @pytest.mark.django_db
@@ -54,6 +75,9 @@ def test_add_memory(client, user):
                                  comment='Test Comment',
                                  user=user).exists()
 
+    response = client.get(reverse('add_memory'))
+    assert isinstance(response.context['form'], MemoryForm)
+
 
 @pytest.mark.django_db
 def test_display_memory(client, user):
@@ -70,17 +94,44 @@ def test_display_memory(client, user):
     response = client.get(reverse('display_memory', args=[memory.id]))
 
     # Check if the response status code is 200 (OK)
-    assert response.status_code == 200
+    assert response.status_code == 302
+    assert response.url == reverse('home')
 
     # Check if the memory details are present in the response
-    assert memory.place_name in str(response.content)
-    assert memory.comment in str(response.content)
+    form = response.context['form']
+    # Compare form widget contents with memory values
+    rendered_form = form.as_table()
+    assert str(memory.place_name) in rendered_form
+    assert str(memory.comment) in rendered_form
+    assert str(memory.latitude) in rendered_form
+    assert str(memory.longitude) in rendered_form
 
-    assert memory.user == user
-    assert memory.place_name == 'Test Place'
-    assert memory.comment == 'Test Comment'
-    assert memory.latitude == 123.456
-    assert memory.longitude == 789.012
+
+    response = client.post(reverse('display_memory', args=[memory.id]), {
+        'place_name': 'Changed Test Place',
+        'comment': 'Changed Test Comment',
+        'latitude': 456.123,
+        'longitude': 012.789,
+        'user': user.id  # Associate the memory with the test user
+    })
+
+    response = client.get(reverse('display_memory', args=[memory.id]))
+
+    # Check if the response status code is 200 (OK)
+    assert response.status_code == 200
+
+    changedMemory = Memory.objects.filter(
+        id=memory.id)[0]
+
+    assert changedMemory.place_name == 'Changed Test Place'
+    assert changedMemory.comment == 'Changed Test Comment'
+    assert changedMemory.latitude == 456.123
+    assert changedMemory.longitude == 012.789
+
+
+
+
+
 
 
 @pytest.mark.django_db

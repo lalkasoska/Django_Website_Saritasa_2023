@@ -7,9 +7,7 @@ from .models import Memory
 
 
 def welcome(request):
-    memories = []  # Replace with your actual memory datas
-    context = {'memories': memories}
-    return render(request, 'welcome.html', context)
+    return render(request, 'welcome.html')
 
 
 @login_required
@@ -63,13 +61,6 @@ def add_memory(request):
     else:
         form = MemoryForm()
     return render(request, 'add_memory.html', {'form': form})
-
-
-@login_required
-def memory_list(request):
-    memories = Memory.objects.all()  # Retrieve all memories from the database
-    context = {'memories': memories}
-    return render(request, 'memory_list.html', context)
 
 
 @login_required

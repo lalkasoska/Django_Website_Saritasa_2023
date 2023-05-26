@@ -31,7 +31,6 @@ urlpatterns = [
          name='logout'),
     path('home/', views.home, name='home'),
     path('add_memory/', views.add_memory, name='add_memory'),
-    path('memory_list/', views.memory_list, name='memory_list'),
     path('memory/<int:memory_id>/', views.display_memory,
          name='display_memory'),
     path('admin/', admin.site.urls),

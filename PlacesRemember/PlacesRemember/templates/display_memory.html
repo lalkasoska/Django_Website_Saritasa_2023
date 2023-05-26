@@ -44,7 +44,7 @@ ymaps.ready(function() {
     var placemarkCoords = [{{memory.longitude}}, {{memory.latitude}}];
     placemark = new ymaps.Placemark(placemarkCoords);
     map.geoObjects.add(placemark);
-    map.setCenter(placemarkCoords, 2);
+    map.setCenter(placemarkCoords, 10);
     var longitude = {{memory.longitude}};
     var latitude = {{memory.latitude}};
     document.getElementById('longitude').value = longitude;
