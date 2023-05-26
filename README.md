@@ -3,7 +3,7 @@
 ## Installation guide
 
 1. Clone the repository
-2. Cd to `DjangoSaritasa/PlacesRemember`
+2. Cd to `/PlacesRemember/`
 3. Run `pip install -r requrements.txt`
 4. Run `python manage.py makemigrations`
 5. Run `python manage.py migrate`
