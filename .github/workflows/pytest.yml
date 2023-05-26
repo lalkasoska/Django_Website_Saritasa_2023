@@ -27,6 +27,11 @@ jobs:
           ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
           # default set of ruff rules with GitHub Annotations
           ruff --format=github --target-version=py37 .
+
+      - name: Create database
+        run: ./manage.py migrate
+
+      # Move into the Django project folder (./app) and run pytest
       - name: Test with pytest
-        run: |
-          pytest
+        working-directory: ./app
+        run: pytest -vv
