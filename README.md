@@ -3,11 +3,12 @@
 ## Installation guide
 
 1. Clone the repository
-2. Cd to DjangoSaritasa/PlacesRemember
-3. Run "pip install -r requrements.txt"
-4. Run "manage.py migrate"
-5. Run "python manage.py runserver"
-6. Open http://127.0.0.1:8000/
+2. Cd to `DjangoSaritasa/PlacesRemember`
+3. Run `pip install -r requrements.txt`
+4. Run `python manage.py makemigrations`
+5. Run `python manage.py migrate`
+6. Run `python manage.py runserver`
+7. Open http://127.0.0.1:8000/
 
 ## Requirements to be satisfied
 
@@ -36,6 +37,8 @@
 - Added badge
   from https://coveralls.io/ <a href='https://coveralls.io/github/lalkasoska/Django_Website_Saritasa_2023?branch=main'><img src='https://coveralls.io/repos/github/lalkasoska/Django_Website_Saritasa_2023/badge.svg?branch=main' alt='Coverage Status' /></a>
   <br><br>
+  ![image](https://github.com/lalkasoska/Django_Website_Saritasa_2023/assets/35616551/e294f3c4-37ee-452b-9ac5-48368728370a)
+<br><br>
 
 ## Overview
 
