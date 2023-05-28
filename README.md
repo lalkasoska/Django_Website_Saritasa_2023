@@ -1,4 +1,4 @@
-# Places Remember Django Application
+# Places Remember Django Application <a href='https://coveralls.io/github/lalkasoska/Django_Website_Saritasa_2023?branch=main'><img src='https://coveralls.io/repos/github/lalkasoska/Django_Website_Saritasa_2023/badge.svg?branch=main' alt='Coverage Status' /></a>
 
 ## Installation guide
 
