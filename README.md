@@ -12,13 +12,9 @@
 8. Open http://127.0.0.1:8000/
 
 ## Requirements to be satisfied
-
-- Local Docker Run<br>
-  I haven't worked with Docker before and decided to work on other aspects of
-  this work more thoroughly instead.
 - Running tests on push with GitHub Actions<br>
   I've successfully set up linters but configuring automatic testing led to
-  some errors I haven't found a workaround for yet.
+  some errors I'm still working on.
 
 ## Satified requirements
 
@@ -31,6 +27,10 @@
   imperative mood at first but started using it later)
 - Wrote unit tests for adding and retrieving memories
 - Set up flake8 and ruff linting on push with GitHub Actions
+- Local Docker Run
+![image](https://github.com/lalkasoska/Django_Website_Saritasa_2023/assets/35616551/ec0b9bd3-20c0-45c2-8ab1-0f199295ae60)
+
+
 - Added badge from https://coveralls.io/ <a href='https://coveralls.io/github/lalkasoska/Django_Website_Saritasa_2023?branch=main'><img src='https://coveralls.io/repos/github/lalkasoska/Django_Website_Saritasa_2023/badge.svg?branch=main' alt='Coverage Status' /></a>
   <br><br>
   ![image](https://github.com/lalkasoska/Django_Website_Saritasa_2023/assets/35616551/e294f3c4-37ee-452b-9ac5-48368728370a)
