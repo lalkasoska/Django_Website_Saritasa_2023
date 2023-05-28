@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- Add condition so that other users can't access the memory -->
 {% if memory.user == user %}
 
 <h1 style="margin-bottom: 30px; color: #272b38;">Your memory</h1>
@@ -32,6 +33,7 @@
 <script src="https://api-maps.yandex.ru/2.1/?apikey=19c7478f-a13f-47d0-8203-faafa0904d09&lang=en_US"
         type="text/javascript"></script>
 
+<!-- Script for activating the map -->
 <script>
 ymaps.ready(function() {
   var map = new ymaps.Map("map", {

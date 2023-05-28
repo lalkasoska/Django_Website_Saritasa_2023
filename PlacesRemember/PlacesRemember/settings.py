@@ -105,14 +105,12 @@ SOCIALACCOUNT_PROVIDERS = {
                          '.googleusercontent.com',
             'secret': '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',
         },
-        'SCOPE': ['profile', 'email'],
     },
     'vk': {
         'APP': {
             'client_id': '51652140',
             'secret': '3X8coX4OPfaARRDfwlMg',
         },
-        'SCOPE': ['email'],
     },
 }
 

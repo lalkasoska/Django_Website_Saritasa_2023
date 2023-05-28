@@ -27,7 +27,7 @@ urlpatterns = [
     path('', views.welcome, name='welcome'),
     path('accounts/', include('allauth.urls')),
     path('logout/', auth_views.LogoutView.as_view(next_page='welcome'),
-         name='logout'),  # Use LogoutView for logout URL
+         name='logout'),
     path('home/', views.home, name='home'),
     path('add_memory/', views.add_memory, name='add_memory'),
     path('memory/<int:memory_id>/', views.display_memory,
