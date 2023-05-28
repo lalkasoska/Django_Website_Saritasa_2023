@@ -7,8 +7,9 @@
 3. Run `pip install -r requrements.txt`
 4. Run `python manage.py makemigrations`
 5. Run `python manage.py migrate`
-6. Run `python manage.py runserver`
-7. Open http://127.0.0.1:8000/
+6. Run `python manage.py collectstatic`
+7. Run `python manage.py runserver`
+8. Open http://127.0.0.1:8000/
 
 ## Requirements to be satisfied
 
