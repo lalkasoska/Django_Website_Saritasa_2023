@@ -12,6 +12,7 @@
 8. Open http://127.0.0.1:8000/
 
 ## Requirements to be satisfied
+
 - Running tests on push with GitHub Actions<br>
   I've successfully set up linters but configuring automatic testing led to
   some errors I'm still working on.
@@ -19,7 +20,8 @@
 ## Satified requirements
 
 - The Django applicaiton is built
-- Deployed the application on the web service https://railwatdeploy-production.up.railway.app
+- Deployed the application on the web
+  service https://railwatdeploy-production.up.railway.app
 - PEP 8 coding style
 - Relevant packages are used
 - Used git during entire development process
@@ -28,13 +30,14 @@
 - Wrote unit tests for adding and retrieving memories
 - Set up flake8 and ruff linting on push with GitHub Actions
 - Local Docker Run
-![image](https://github.com/lalkasoska/Django_Website_Saritasa_2023/assets/35616551/ec0b9bd3-20c0-45c2-8ab1-0f199295ae60)
+  ![image](https://github.com/lalkasoska/Django_Website_Saritasa_2023/assets/35616551/ec0b9bd3-20c0-45c2-8ab1-0f199295ae60)
 
 
-- Added badge from https://coveralls.io/ <a href='https://coveralls.io/github/lalkasoska/Django_Website_Saritasa_2023?branch=main'><img src='https://coveralls.io/repos/github/lalkasoska/Django_Website_Saritasa_2023/badge.svg?branch=main' alt='Coverage Status' /></a>
+- Added badge
+  from https://coveralls.io/ <a href='https://coveralls.io/github/lalkasoska/Django_Website_Saritasa_2023?branch=main'><img src='https://coveralls.io/repos/github/lalkasoska/Django_Website_Saritasa_2023/badge.svg?branch=main' alt='Coverage Status' /></a>
   <br><br>
   ![image](https://github.com/lalkasoska/Django_Website_Saritasa_2023/assets/35616551/e294f3c4-37ee-452b-9ac5-48368728370a)
-<br><br>
+  <br><br>
 
 ## Overview
 

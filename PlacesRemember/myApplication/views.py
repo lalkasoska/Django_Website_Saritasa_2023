@@ -1,7 +1,10 @@
+# Django
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 
+# local Django
 from PlacesRemember.forms import MemoryForm
+
 from .models import Memory
 
 

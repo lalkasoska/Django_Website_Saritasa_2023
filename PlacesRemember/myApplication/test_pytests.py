@@ -1,4 +1,7 @@
+# standard library
 import os
+
+# Django
 import django
 
 #  pytest was unsatisfied with DJANGO_SETTINGS_MODULE so i had to set it
@@ -6,14 +9,20 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PlacesRemember.settings')
 django.setup()
 
+# third-party
 import pytest  # noqa: E402
+from allauth.socialaccount.models import SocialAccount  # noqa: E402
+
+# Django
 from django.contrib.auth.models import User  # noqa: E402
 from django.shortcuts import get_object_or_404  # noqa: E402
 from django.test import Client  # noqa: E402
 from django.urls import reverse  # noqa: E402
-from .models import Memory  # noqa: E402
+
+# local Django
 from PlacesRemember.forms import MemoryForm  # noqa: E402
-from allauth.socialaccount.models import SocialAccount  # noqa: E402
+
+from .models import Memory  # noqa: E402
 
 
 @pytest.fixture

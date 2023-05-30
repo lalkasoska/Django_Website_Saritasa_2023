@@ -1,4 +1,7 @@
+# Django
 from django import forms
+
+# local Django
 from myApplication.models import Memory
 
 
