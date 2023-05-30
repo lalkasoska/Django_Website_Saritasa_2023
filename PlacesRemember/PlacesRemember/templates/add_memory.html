@@ -28,25 +28,6 @@
                 style="width: 500px; height: 60px; font-size: 20pt;"
                 type="submit" disabled>Save
         </button>
-        <script>
-        // Function to enable/disable the "Save" button based on form validity
-        function toggleSaveButton() {
-            var form = document.querySelector('form');
-            var saveButton = document.querySelector('button[type="submit"]');
-
-            if (form.checkValidity()) {
-                saveButton.disabled = false;
-            } else {
-                saveButton.disabled = true;
-            }
-        }
-
-        // Event listener to trigger form validation on input change
-        var inputs = document.querySelectorAll('input, textarea');
-        inputs.forEach(function(input) {
-            input.addEventListener('input', toggleSaveButton);
-        });
-    </script>
     </form>
 </div>
 
@@ -62,15 +43,18 @@ ymaps.ready(function() {
   });
 
   var placemark;
+  var saveButton = document.querySelector('button[type="submit"]');
   map.events.add('click', function(e) {
     var coords = e.get('coords');
     var longitude = coords[0];
     var latitude = coords[1];
+    saveButton.disabled = false;
     if (placemark) {
       placemark.geometry.setCoordinates(coords);
     } else {
       placemark = new ymaps.Placemark(coords);
       map.geoObjects.add(placemark);
+
     }
 
     // Update the hidden input field values with the longitude and latitude
