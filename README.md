@@ -11,10 +11,13 @@
 7. Run `python manage.py runserver`
 8. Open http://127.0.0.1:8000/
 
-## Satified requirements
+## Features
 
 - The Django applicaiton is built
-- Deployed the application on the web
+- Authorization via VK/Google
+- Working with geodata using Yandex Maps API
+- Integrates with PostgreSQL/SQLite database via ORM
+- Deployed the application on a web
   service https://railwatdeploy-production.up.railway.app
 - PEP 8 coding style
 - Relevant packages are used
@@ -23,7 +26,7 @@
   imperative mood at first but started using it later)
 - Wrote unit tests for adding and retrieving memories
 - Set up flake8 and ruff linting on push with GitHub Actions
-- Local Docker Run
+- Local Docker Run <br><br>
   ![image](https://github.com/lalkasoska/Django_Website_Saritasa_2023/assets/35616551/ec0b9bd3-20c0-45c2-8ab1-0f199295ae60)
 
 
