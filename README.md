@@ -11,12 +11,6 @@
 7. Run `python manage.py runserver`
 8. Open http://127.0.0.1:8000/
 
-## Requirements to be satisfied
-
-- Running tests on push with GitHub Actions<br>
-  I've successfully set up linters but configuring automatic testing led to
-  some errors I'm still working on.
-
 ## Satified requirements
 
 - The Django applicaiton is built
